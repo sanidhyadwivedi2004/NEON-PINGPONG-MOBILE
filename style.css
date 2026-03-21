@@ -1,0 +1,263 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0a0a1a;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  height: 100dvh;
+  width: 100vw;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Canvas ── */
+#gameBoard {
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100dvh;
+  touch-action: none;
+}
+
+/* ── Touch zones ── */
+.touch-zone {
+  position: fixed;
+  top: 0;
+  width: 50%;
+  height: 100dvh;
+  z-index: 10;
+  touch-action: none;
+}
+#touchZoneLeft  { left: 0; }
+#touchZoneRight { right: 0; }
+
+/* ── HUD ── */
+#hud {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+#scoreText {
+  font-size: clamp(28px, 8vw, 52px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 8px;
+  text-shadow: 0 0 20px #e94560;
+}
+
+#difficultyLabel {
+  position: absolute;
+  right: 16px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #ffffff55;
+  font-weight: 700;
+}
+
+/* ── Streak badge ── */
+.streak-badge {
+  position: absolute;
+  left: 16px;
+  background: linear-gradient(135deg, #ff6b35, #f7c59f);
+  color: #1a1a1a;
+  font-weight: 900;
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  animation: pulseStreak 0.6s ease infinite alternate;
+  transition: opacity 0.3s;
+}
+.streak-badge.hidden { opacity: 0; pointer-events: none; }
+
+@keyframes pulseStreak {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+/* ── Combo popup ── */
+.combo-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: clamp(32px, 10vw, 64px);
+  font-weight: 900;
+  color: #ffd700;
+  text-shadow: 0 0 30px #ff6b35, 0 0 60px #ff6b35;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+  transition: none;
+}
+.combo-popup.pop {
+  animation: comboPop 0.8s ease forwards;
+}
+@keyframes comboPop {
+  0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+  40%  { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  70%  { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
+  100% { transform: translate(-50%, -80%) scale(1); opacity: 0; }
+}
+
+/* ── Overlays ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 26, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 32px 24px;
+  width: min(90vw, 360px);
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Title ── */
+.game-title {
+  font-size: clamp(40px, 12vw, 72px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 4px;
+  line-height: 1;
+}
+.game-title span { color: #e94560; }
+
+.subtitle {
+  color: #ffffff88;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* ── Difficulty ── */
+.difficulty-select {
+  display: flex;
+  gap: 10px;
+}
+.diff-btn {
+  padding: 8px 18px;
+  border: 2px solid #ffffff33;
+  border-radius: 20px;
+  background: transparent;
+  color: #ffffff88;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.diff-btn.active {
+  border-color: #e94560;
+  color: #fff;
+  background: #e9456022;
+  box-shadow: 0 0 12px #e9456066;
+}
+
+/* ── Buttons ── */
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e94560, #c0392b);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 24px #e9456066;
+  transition: transform 0.15s, box-shadow 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.primary-btn:active { transform: scale(0.96); box-shadow: 0 2px 12px #e9456066; }
+
+.secondary-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border: 2px solid #ffffff33;
+  border-radius: 14px;
+  background: transparent;
+  color: #ffffff88;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.secondary-btn:active { background: #ffffff11; }
+
+/* ── Stats box ── */
+.stats-box {
+  display: flex;
+  gap: 24px;
+  background: #ffffff0a;
+  border: 1px solid #ffffff11;
+  border-radius: 16px;
+  padding: 16px 24px;
+  width: 100%;
+  justify-content: space-around;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.stat span {
+  font-size: 28px;
+  font-weight: 900;
+  color: #e94560;
+}
+.stat label {
+  font-size: 11px;
+  color: #ffffff55;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── Victory emoji ── */
+.victory-emoji {
+  font-size: 64px;
+  animation: bounce 0.6s ease infinite alternate;
+}
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-10px); }
+}
+
+/* ── Best score ── */
+.best-score-display {
+  font-size: 13px;
+  color: #ffffff44;
+  letter-spacing: 1px;
+}
+.best-score-display span { color: #ffd700; font-weight: 700; }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f3460">
+  <title>Ping Pong</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Start Screen -->
+  <div id="startScreen" class="overlay show">
+    <div class="overlay-content">
+      <h1 class="game-title">PING<span>PONG</span></h1>
+      <p class="subtitle">Swipe your paddle to play</p>
+      <div class="difficulty-select">
+        <button class="diff-btn active" data-diff="easy">Easy</button>
+        <button class="diff-btn" data-diff="medium">Medium</button>
+        <button class="diff-btn" data-diff="hard">Hard</button>
+      </div>
+      <button id="startBtn" class="primary-btn">TAP TO PLAY</button>
+      <div class="best-score-display">Best: <span id="bestScoreDisplay">0</span></div>
+    </div>
+  </div>
+
+  <!-- Victory Screen -->
+  <div id="victoryScreen" class="overlay">
+    <div class="overlay-content">
+      <div id="victoryEmoji" class="victory-emoji">🏆</div>
+      <h1 id="victoryMessage">You Win!</h1>
+      <div class="stats-box">
+        <div class="stat"><span id="finalScore">0</span><label>Score</label></div>
+        <div class="stat"><span id="finalStreak">0</span><label>Best Streak</label></div>
+        <div class="stat"><span id="finalRallies">0</span><label>Rallies</label></div>
+      </div>
+      <button id="playAgainBtn" class="primary-btn">PLAY AGAIN</button>
+      <button id="menuBtn" class="secondary-btn">MENU</button>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div id="streakBadge" class="streak-badge hidden">🔥 <span id="streakCount">0</span>x</div>
+    <div id="scoreText">0 : 0</div>
+    <div id="difficultyLabel">EASY</div>
+  </div>
+
+  <!-- Canvas -->
+  <canvas id="gameBoard"></canvas>
+
+  <!-- Touch Controls -->
+  <div id="touchZoneLeft" class="touch-zone"></div>
+  <div id="touchZoneRight" class="touch-zone"></div>
+
+  <!-- Combo popup -->
+  <div id="comboPopup" class="combo-popup"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
