@@ -3,7 +3,7 @@ const canvas       = document.getElementById('gameBoard');
 const ctx          = canvas.getContext('2d');
 const scoreText    = document.getElementById('scoreText');
 const streakBadge  = document.getElementById('streakBadge');
-const streakCount  = document.getElementById('streakCount');
+const streakCount  = document.getElementById('streakCount');  
 const comboPopup   = document.getElementById('comboPopup');
 const diffLabel    = document.getElementById('difficultyLabel');
 
