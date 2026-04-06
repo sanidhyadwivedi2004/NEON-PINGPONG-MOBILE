@@ -7,7 +7,7 @@ A retro-futuristic **ping pong game** built out of boredom, designed with **neon
 ## 🧠 Why Neon Pong?
 
 Because not every project needs a reason.  
-Sometimes, creativity just hits — and this is the result:  
+Sometimes, creativity just hits — and this is the result:                          
 a glowing, fast-paced, arcade-style experience shaped around **my own UX vision**.
 
 ---
