@@ -4,6 +4,7 @@ A retro-futuristic **ping pong game** built out of boredom, designed with **neon
           
 --- 
 
+
 ## 🧠 Why Neon Pong?
 
 Because not every project needs a reason.  
