@@ -2,8 +2,7 @@
 
 A retro-futuristic **ping pong game** built out of boredom, designed with **neon aesthetics**, and powered by a mix of **HTML, CSS, JavaScript**, and a touch of **AI-assisted creativity** 🧠✨
           
---- 
-
+---   
 
 ## 🧠 Why Neon Pong?
 
